@@ -25,13 +25,13 @@ public class MovieRepository {
         directorMap.put(director.getName(), director);
     }
     public void saveMovieDirectorPair(String movie, String director) {
-        if(movieMap.containsKey(movie) && directorMap.containsKey(director)) {
-            List<String> currentMovie = new ArrayList<>();
-            if(directorMovieMap.containsKey(director)) currentMovie = directorMovieMap.get(director);
-
-            currentMovie.add(movie);
-
-            directorMovieMap.put(director, currentMovie);
+        if(directorMovieMap.containsKey(director)) {
+            directorMovieMap.get(director).add(movie);
+        }
+        else{
+            List<String> list = new ArrayList<>();
+            list.add(movie);
+            directorMovieMap.put(director, list);
         }
     }
     public Movie findMovie(String movie) {
